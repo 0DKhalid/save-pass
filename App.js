@@ -1,21 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import ReduxThunk from 'redux-thunk';
+import MainNavigator from './navigation/MainNavigator';
+import walletReducer from './store/walletReducer';
+import { init } from './db/walletDB';
+
+init()
+  .then((result) => {
+    console.log('DATABASE CREATED!');
+  })
+  .catch((err) => {
+    console.log('FALID TO CREATE DATABASE');
+  });
+
+const store = createStore(walletReducer, applyMiddleware(ReduxThunk));
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <MainNavigator />
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
