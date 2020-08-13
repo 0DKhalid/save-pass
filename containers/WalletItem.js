@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Dimensions,
   Clipboard,
+  Alert,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
@@ -39,7 +40,11 @@ const WalletItem = (props) => {
   };
 
   const removeHanlder = () => {
-    dispatch(walletActions.removeData(props.id));
+    try {
+      dispatch(walletActions.removeData(props.id));
+    } catch (err) {
+      Alert.alert('حدثة مشكلة', err.message, [{ text: 'إغلاق' }]);
+    }
     setShowDeletionAlert(false);
   };
 
@@ -55,13 +60,12 @@ const WalletItem = (props) => {
       >
         <CustomAlert
           visible={showAlert}
-          text="تم النسخ"
-          iconName="md-checkmark-circle"
+          text='تم النسخ'
+          iconName='md-checkmark-circle'
           iconColor={Colors.success}
         />
         <Text style={styles.titleContainer}>
-          الإسم:
-          <Text style={styles.title}>{props.title}</Text>
+          الإسم: <Text style={styles.title}>{props.title}</Text>
         </Text>
         <Text style={styles.passwordContainer}>
           كلمة السر:{' '}
@@ -72,7 +76,7 @@ const WalletItem = (props) => {
         <View style={styles.iconsContainer}>
           <TouchableOpacity onPress={() => setShowDeletionAlert(true)}>
             <Ionicons
-              name="md-trash"
+              name='md-trash'
               size={dynamicValue('width', 15)}
               color={Colors.red}
             />
@@ -86,7 +90,7 @@ const WalletItem = (props) => {
           </TouchableOpacity>
           <TouchableOpacity onPress={props.onEdit.bind(this, props.id)}>
             <Ionicons
-              name="md-create"
+              name='md-create'
               size={dynamicValue('width', 15)}
               color={Colors.success}
             />

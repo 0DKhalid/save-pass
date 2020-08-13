@@ -68,10 +68,12 @@ const FindPass = () => {
     }
 
     const netStatusRes = await NetInfo.fetch();
-    if (!netStatusRes.isConnected)
+    if (!netStatusRes.isConnected) {
       Alert.alert('مشكلة في الإتصال', 'تأكد من انك متصل بالإنترنت', [
         { text: 'إغلاق' },
       ]);
+      return;
+    }
 
     setIsLoading(true);
     const { firstFiveChar, lastFullChar } = await encryptUserInput(userInput);
@@ -102,7 +104,11 @@ const FindPass = () => {
         ? timesOfFound + ' مرات'
         : timesOfFound + ' مرة';
 
-    setShowUpMsg(`تم العثور عليه ${times}😨`);
+    setShowUpMsg(
+      `تم العثور عليه ${times
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}😨`
+    );
     setDangerColor({
       container: '#FF4C4C',
       msg: '#B23535',
@@ -115,13 +121,13 @@ const FindPass = () => {
         visible={passVisibility}
         userInput={userInput}
         inputChange={onChangeHandler}
-        placeholder="أدخل كلمة السر"
+        placeholder='أدخل كلمة السر'
         toggleVisibility={() => setPassVisibility((prevState) => !prevState)}
       />
       {isLoading ? (
-        <ActivityIndicator size="small" color={Colors.secondaryColor} />
+        <ActivityIndicator size='small' color={Colors.secondaryColor} />
       ) : (
-        <CustomButton onPress={onClickHandler} />
+        <CustomButton onPress={onClickHandler} btnText='بحث' />
       )}
 
       {!!showUpMsg && (

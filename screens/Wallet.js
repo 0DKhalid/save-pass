@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, Text, StyleSheet } from 'react-native';
+import { View, FlatList, Text, StyleSheet, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import * as walletActions from '../store/walletActions';
@@ -31,8 +31,8 @@ const Wallet = (props) => {
       headerRight: () => (
         <HeaderButtons HeaderButtonComponent={HeaderBtn}>
           <Item
-            title="add new"
-            iconName="plus"
+            title='add new'
+            iconName='plus'
             onPress={() => setShowModal(true)}
           />
         </HeaderButtons>
@@ -42,7 +42,11 @@ const Wallet = (props) => {
   }, []);
 
   useEffect(() => {
-    dispatch(walletActions.setData(walletKey));
+    try {
+      dispatch(walletActions.setData(walletKey));
+    } catch (err) {
+      Alert.alert('حدثة مشكلة', err.message, [{ text: 'إغلاق' }]);
+    }
   }, [dispatch]);
 
   const hideModal = () => {
@@ -78,12 +82,24 @@ const Wallet = (props) => {
   };
 
   const onSaveHandler = () => {
-    if (editMode) {
-      dispatch(
-        walletActions.updateData(walletKey, itemId, title, senstiveData, detial)
-      );
-    } else {
-      dispatch(walletActions.saveData(walletKey, title, senstiveData, detial));
+    try {
+      if (editMode) {
+        dispatch(
+          walletActions.updateData(
+            walletKey,
+            itemId,
+            title,
+            senstiveData,
+            detial
+          )
+        );
+      } else {
+        dispatch(
+          walletActions.saveData(walletKey, title, senstiveData, detial)
+        );
+      }
+    } catch (err) {
+      Alert.alert('حدثة مشكلة', err.message, [{ text: 'إغلاق' }]);
     }
 
     hideModal();

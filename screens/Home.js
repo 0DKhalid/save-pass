@@ -14,7 +14,7 @@ const Home = () => {
     <View style={styles.screen}>
       <ScrollView contentContainerStyle={styles.container}>
         <CustomModal
-          animationType="slide"
+          animationType='slide'
           visible={showModal}
           styleModal={styles.modal}
         >
@@ -40,12 +40,12 @@ const Home = () => {
                 <Text
                   style={{ ...styles.detailModal, ...{ fontWeight: 'bold' } }}
                 >
-                  يعني لاتخاف حتى الجن الأزرق ماراح يعرفون إيش كتبت🙂
+                  يعني لاتخاف مافي مخلوق على وجه الأرض راح يعرف إيش كتبت🙂
                 </Text>
               </Text>
             </View>
             <Button
-              title="إغلاق"
+              title='إغلاق'
               onPress={() => setShowModal(false)}
               color={Colors.secondaryColor}
             />
@@ -56,7 +56,7 @@ const Home = () => {
             هل كلمة السر التي استخدمها أصبحت مكشوفه{' '}
             <Entypo
               onPress={() => setShowModal(true)}
-              name="info-with-circle"
+              name='info-with-circle'
               size={24}
               color={Colors.secondaryColor}
             />

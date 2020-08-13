@@ -9,7 +9,7 @@ const AddOrEditSenstiveData = (props) => {
   return (
     <CustomModal
       visible={props.visible}
-      animationType="slide"
+      animationType='slide'
       styleModalContent={styles.modalContentContainer}
     >
       <Text style={styles.title}>
@@ -41,10 +41,10 @@ const AddOrEditSenstiveData = (props) => {
           />
         </View>
         <View style={styles.btnContainer}>
-          <Button title="إلغاء" onPress={props.hideModal} color={Colors.red} />
+          <Button title='إلغاء' onPress={props.hideModal} color={Colors.red} />
 
           <Button
-            title="حفظ"
+            title='حفظ'
             onPress={props.save}
             color={Colors.secondaryColor}
             disabled={

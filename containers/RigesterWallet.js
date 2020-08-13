@@ -112,7 +112,11 @@ const RigesterWallet = (props) => {
   };
 
   const forgotPassHandler = async () => {
-    await dispatch(walletActions.resetDB());
+    try {
+      await dispatch(walletActions.resetDB());
+    } catch (err) {
+      Alert.alert('حدثة مشكلة', err.message, [{ text: 'إغلاق' }]);
+    }
     await SecureStore.deleteItemAsync('walletKey');
     setShowForgotPassModal(false);
     setIsHasWallet(false);
@@ -122,20 +126,20 @@ const RigesterWallet = (props) => {
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <View style={styles.container}>
         {isLoading ? (
-          <ActivityIndicator size="large" color={Colors.secondaryColor} />
+          <ActivityIndicator size='large' color={Colors.secondaryColor} />
         ) : (
           <View style={styles.card}>
             <CustomAlert
               visible={passWrong}
-              text="كلمة السر خاطئة"
-              iconName="ios-close-circle"
+              text='كلمة السر خاطئة'
+              iconName='ios-close-circle'
               iconColor={Colors.red}
             />
             <Text style={styles.text}>
               {!isHasWallet ? 'إنشاء حافظة جديده' : 'تسجيل الدخول للحافظة'}
             </Text>
             <CustomInput
-              placeholder="أدخل كلمة سر الحافظة"
+              placeholder='أدخل كلمة سر الحافظة'
               visible={visiblePass}
               value={userInput}
               toggleVisibility={() => setVisiblePass((prevState) => !prevState)}
@@ -154,7 +158,7 @@ const RigesterWallet = (props) => {
             )}
             <View style={styles.btnContainer}>
               {loader ? (
-                <ActivityIndicator size="small" color={Colors.secondaryColor} />
+                <ActivityIndicator size='small' color={Colors.secondaryColor} />
               ) : (
                 <Button
                   title={isHasWallet ? 'دخول' : 'إنشاء'}
@@ -183,7 +187,7 @@ const RigesterWallet = (props) => {
               />
               {isHasWallet && (
                 <Button
-                  title="نسيت كلمة السر"
+                  title='نسيت كلمة السر'
                   onPress={() => setShowForgotPassModal(true)}
                   color={Colors.red}
                 />

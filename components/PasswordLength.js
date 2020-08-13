@@ -10,18 +10,18 @@ const NumericNumber = (props) => {
       <View style={styles.countContainer}>
         <TouchableOpacity onPress={props.minimize}>
           <AntDesign
-            name="minuscircle"
+            name='minuscircle'
             size={40}
-            color="black"
+            color='black'
             color={Colors.secondaryColor}
           />
         </TouchableOpacity>
         <Text style={styles.value}>{props.value}</Text>
         <TouchableOpacity onPress={props.maxmize}>
           <AntDesign
-            name="pluscircle"
+            name='pluscircle'
             size={40}
-            color="black"
+            color='black'
             color={Colors.secondaryColor}
           />
         </TouchableOpacity>

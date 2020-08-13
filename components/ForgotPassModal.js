@@ -18,7 +18,7 @@ const ForgotPassModal = (props) => {
     <CustomModal
       transparent
       visible={props.visible}
-      animationType="slide"
+      animationType='slide'
       styleModal={styles.modalContainer}
       styleModalContent={styles.modalContent}
     >
@@ -41,13 +41,13 @@ const ForgotPassModal = (props) => {
       </View>
       <View style={styles.btnContainer}>
         <Button
-          title="إنشاء حافظة جديدة"
+          title='إنشاء حافظة جديدة'
           color={Colors.success}
           onPress={props.confirmCreation}
           disabled={!props.checked}
         />
         <Button
-          title="إلغاء"
+          title='إلغاء'
           color={Colors.red}
           onPress={props.cancelCreation}
         />

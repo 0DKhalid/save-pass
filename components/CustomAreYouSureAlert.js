@@ -11,7 +11,7 @@ const CustomAreYouSureAlert = (props) => {
     <CustomModal
       transparent
       visible={props.visible}
-      animationType="slide"
+      animationType='slide'
       styleModal={styles.modalContainer}
       styleModalContent={styles.modalContent}
     >
@@ -20,9 +20,9 @@ const CustomAreYouSureAlert = (props) => {
         إذا كن فعلا تريد حذف هذه البيانات اضغط حذف.
       </Text>
       <View style={styles.btnContainer}>
-        <Button title="حذف" color={Colors.red} onPress={props.confirm} />
+        <Button title='حذف' color={Colors.red} onPress={props.confirm} />
         <Button
-          title="إلغاء"
+          title='إلغاء'
           color={Colors.secondaryColor}
           onPress={props.cancel}
         />

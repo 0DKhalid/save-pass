@@ -24,8 +24,8 @@ const defaultMainHeaderOptions = (navData) => {
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderBtn}>
         <Item
-          title="passwords wallet"
-          iconName="wallet"
+          title='passwords wallet'
+          iconName='wallet'
           onPress={() => navData.navigation.navigate('RigesterWallet')}
         />
       </HeaderButtons>
@@ -39,28 +39,28 @@ const Tab = createMaterialBottomTabNavigator();
 
 const BottomTabNavigator = () => (
   <Tab.Navigator
-    initialRouteName="Home"
+    initialRouteName='Home'
     activeColor={Colors.primaryWhite}
     shifting
     barStyle={{ backgroundColor: Colors.secondaryColor }}
   >
     <Tab.Screen
-      name="Home"
+      name='Home'
       component={Home}
       options={{
         tabBarLabel: 'الرئيسيه',
         tabBarIcon: (props) => (
-          <Ionicons name="ios-home" size={23} color={props.color} />
+          <Ionicons name='ios-home' size={23} color={props.color} />
         ),
       }}
     />
     <Tab.Screen
-      name="GeneratePass"
+      name='GeneratePass'
       component={GeneratePass}
       options={{
         tabBarLabel: 'إنشاء كلمة مرور',
         tabBarIcon: (props) => (
-          <Ionicons name="md-create" size={24} color={props.color} />
+          <Ionicons name='md-create' size={24} color={props.color} />
         ),
       }}
     />
@@ -74,10 +74,10 @@ const MainStackNavigator = () => (
       ...defaultMainHeaderOptions(navData),
     })}
   >
-    <Stack.Screen name="Main" component={BottomTabNavigator} />
-    <Stack.Screen name="Wallet" component={Wallet} />
+    <Stack.Screen name='Main' component={BottomTabNavigator} />
+    <Stack.Screen name='Wallet' component={Wallet} />
     <Stack.Screen
-      name="RigesterWallet"
+      name='RigesterWallet'
       component={RegisterWallet}
       options={RigesterWalletScreenOptions}
     />

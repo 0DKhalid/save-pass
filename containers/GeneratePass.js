@@ -111,8 +111,8 @@ const GeneratePassword = (props) => {
       <View style={styles.container}>
         <CustomAlert
           visible={showAlert}
-          text="تم النسخ"
-          iconName="md-checkmark-circle"
+          text='تم النسخ'
+          iconName='md-checkmark-circle'
           iconColor={Colors.success}
         />
         <NumericNumber
@@ -122,28 +122,28 @@ const GeneratePassword = (props) => {
         />
         <View style={styles.filters}>
           <Filters
-            text="أحرف صغيرة"
+            text='أحرف صغيرة'
             isEnabled={state.filters.lowerCase}
             toggleSwitch={onChangeFilter.bind(this, 'lowerCase')}
           />
           <Filters
-            text="أحرف كبيرة"
+            text='أحرف كبيرة'
             isEnabled={state.filters.upperCase}
             toggleSwitch={onChangeFilter.bind(this, 'upperCase')}
           />
           <Filters
-            text="رموز خاصة"
+            text='رموز خاصة'
             isEnabled={state.filters.symbols}
             toggleSwitch={onChangeFilter.bind(this, 'symbols')}
           />
           <Filters
-            text="أرقام"
+            text='أرقام'
             isEnabled={state.filters.numbers}
             toggleSwitch={onChangeFilter.bind(this, 'numbers')}
           />
 
           <Button
-            title="توليد"
+            title='توليد'
             disabled={state.isFilterSet}
             color={Colors.secondaryColor}
             onPress={generateRndPass}

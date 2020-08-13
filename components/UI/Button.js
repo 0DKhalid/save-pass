@@ -6,7 +6,7 @@ const CustomButton = (props) => (
   <View style={styles.roundedBtn}>
     <TouchableNativeFeedback onPress={props.onPress}>
       <View style={styles.btnContainer}>
-        <Text style={styles.btnText}>أبحث</Text>
+        <Text style={styles.btnText}>{props.btnText}</Text>
       </View>
     </TouchableNativeFeedback>
   </View>
@@ -15,20 +15,20 @@ const CustomButton = (props) => (
 const styles = StyleSheet.create({
   roundedBtn: {
     overflow: 'hidden',
-    borderRadius: 10
+    borderRadius: 10,
   },
   btnContainer: {
     height: 35,
     width: 100,
     backgroundColor: Colors.secondaryColor,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   btnText: {
     color: Colors.primaryWhite,
     fontSize: 18,
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+  },
 });
 
 export default CustomButton;

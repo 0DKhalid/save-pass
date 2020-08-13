@@ -18,7 +18,7 @@ const ConfirmCreateWalletModal = (props) => {
     <CustomModal
       transparent
       visible={props.visible}
-      animationType="slide"
+      animationType='slide'
       styleModal={styles.modalContainer}
       styleModalContent={styles.modalContent}
     >
@@ -40,13 +40,13 @@ const ConfirmCreateWalletModal = (props) => {
       </View>
       <View style={styles.btnContainer}>
         <Button
-          title="إنشاء"
+          title='إنشاء'
           color={Colors.success}
           onPress={props.confirmCreation}
           disabled={!props.checked}
         />
         <Button
-          title="إلغاء"
+          title='إلغاء'
           color={Colors.red}
           onPress={props.cancelCreation}
         />

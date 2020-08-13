@@ -7,11 +7,11 @@ const ShowGeneratedPass = (props) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={props.save}>
-        <Fontisto name="save" size={35} color={Colors.secondaryColor} />
+        <Fontisto name='save' size={35} color={Colors.secondaryColor} />
       </TouchableOpacity>
       <Text style={styles.text}>{props.password}</Text>
       <TouchableOpacity onPress={props.copy}>
-        <Ionicons name="ios-copy" size={38} color={Colors.secondaryColor} />
+        <Ionicons name='ios-copy' size={38} color={Colors.secondaryColor} />
       </TouchableOpacity>
     </View>
   );
