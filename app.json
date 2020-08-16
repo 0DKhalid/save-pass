@@ -2,7 +2,7 @@
   "expo": {
     "name": "حافظة كلمات السر",
     "slug": "save-pass",
-    "version": "1.0.2",
+    "version": "1.1.4",
     "sdkVersion": "38.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,17 +15,14 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "supportsTablet": true
-    },
     "android": {
       "package": "khalid.D15CD4E7B89E24ED.Save_Pass",
-      "versionCode": 3,
+      "versionCode": 5,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
       },
-      "icon": "./assets/icon.png",
+
       "permissions": []
     }
   }
