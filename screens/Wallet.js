@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, Text, StyleSheet, Alert } from 'react-native';
+import {
+  View,
+  FlatList,
+  Text,
+  StyleSheet,
+  Alert,
+  // AppState,
+} from 'react-native';
+// import * as TaskManger from 'expo-task-manager';
+// import * as Background from 'expo-background-fetch';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import * as walletActions from '../store/walletActions';
@@ -48,6 +57,17 @@ const Wallet = (props) => {
       Alert.alert('حدثة مشكلة', err.message, [{ text: 'إغلاق' }]);
     }
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   AppState.addEventListener('change', handleAppStateChange);
+
+  //   return () => AppState.removeEventListener('change');
+  // }, []);
+
+  // const handleAppStateChange = (nextAppState) => {
+  //   console.log('hi');
+  //   setTimeout(() => props.navigation.navigate('RigesterWallet'), 3000);
+  // };
 
   const hideModal = () => {
     if (!editMode) {

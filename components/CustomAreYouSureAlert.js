@@ -17,7 +17,7 @@ const CustomAreYouSureAlert = (props) => {
     >
       <Text style={styles.title}>هل فعلا تريد حذف هذه البيانات</Text>
       <Text style={styles.text}>
-        إذا كن فعلا تريد حذف هذه البيانات اضغط حذف.
+        إذا كنت فعلا تريد حذف هذه البيانات اضغط حذف.
       </Text>
       <View style={styles.btnContainer}>
         <Button title='حذف' color={Colors.red} onPress={props.confirm} />

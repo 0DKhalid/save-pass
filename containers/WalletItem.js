@@ -56,7 +56,10 @@ const WalletItem = (props) => {
         confirm={removeHanlder}
       />
       <View
-        style={{ ...styles.walletItem, ...{ marginBottom: !expand ? 10 : 0 } }}
+        style={{
+          ...styles.walletItem,
+          ...{ marginBottom: !expand ? 10 : 0 },
+        }}
       >
         <CustomAlert
           visible={showAlert}
@@ -64,15 +67,16 @@ const WalletItem = (props) => {
           iconName='md-checkmark-circle'
           iconColor={Colors.success}
         />
-        <Text style={styles.titleContainer}>
-          الإسم: <Text style={styles.title}>{props.title}</Text>
-        </Text>
-        <Text style={styles.passwordContainer}>
-          كلمة السر:{' '}
+        <View style={styles.formGroup}>
+          <Text style={styles.title}>عنوان كلمة السر</Text>
+          <Text style={styles.titleContent}>{props.title}</Text>
+        </View>
+        <View style={styles.formGroup}>
+          <Text style={styles.passwordContainer}>كلمة السر</Text>
           <Text onPress={copyHandler} style={styles.password}>
             {props.password}
           </Text>
-        </Text>
+        </View>
         <View style={styles.iconsContainer}>
           <TouchableOpacity onPress={() => setShowDeletionAlert(true)}>
             <Ionicons
@@ -116,27 +120,33 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     elevation: 5,
   },
-  titleContainer: {
-    fontSize: 23,
+  formGroup: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 7,
+  },
+  title: {
+    flexDirection: 'column',
+    fontSize: 22,
     paddingHorizontal: 15,
     paddingTop: 5,
     color: '#000',
     fontWeight: 'bold',
   },
-  title: {
+  titleContent: {
     color: Colors.titleText,
+    fontSize: 19,
     fontWeight: 'normal',
   },
   passwordContainer: {
     fontSize: 23,
-    letterSpacing: 5,
     paddingVertical: 5,
-    paddingHorizontal: 15,
     color: '#000',
     fontWeight: 'bold',
   },
   password: {
     marginHorizontal: 10,
+    letterSpacing: 5,
     backgroundColor: '#ccc',
     fontWeight: 'normal',
     fontSize: 18,
