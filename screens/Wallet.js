@@ -66,14 +66,16 @@ const Wallet = (props) => {
     } catch (err) {
       Alert.alert('حدثة مشكلة', err.message, [{ text: 'إغلاق' }]);
     }
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
-    flatList.current.scrollToIndex({
-      index: searchedItemIndex === -1 ? 0 : searchedItemIndex,
-      animated: true,
-    });
-  }, [searchedItemIndex]);
+    if (walletList.length > 0) {
+      flatList.current.scrollToIndex({
+        index: searchedItemIndex === -1 ? 0 : searchedItemIndex,
+        animated: true,
+      });
+    }
+  }, [searchedItemIndex, walletList]);
 
   const hideModal = () => {
     if (!editMode) {
