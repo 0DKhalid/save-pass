@@ -16,6 +16,11 @@ export const DELETE_ITEM = 'DELETE_ITEM';
 export const UPDATE_ITEM = 'UPDATE_ITEM';
 export const SAVE_GENERATED_PASSWORD = 'SAVE_GENERATED_PASSWORD';
 export const CANCEL_SAVE_GENERATED_PASSWORD = 'CANCEL_SAVE_GENERATED_PASSWORD';
+export const SEARCHED_ITEM_INDEX = 'SEARCHED_ITEM_INDEX';
+
+
+
+
 
 export const setWalletKey = (walletKey) => {
   return {
@@ -23,6 +28,15 @@ export const setWalletKey = (walletKey) => {
     walletKey,
   };
 };
+
+
+export const searchForItem = (title) => {
+  return{
+    type: SEARCHED_ITEM_INDEX,
+    itemTitle: title
+  }
+}
+
 
 export const resetState = () => {
   return {

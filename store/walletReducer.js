@@ -8,12 +8,14 @@ import {
   SAVE_GENERATED_PASSWORD,
   CANCEL_SAVE_GENERATED_PASSWORD,
   RESET_STATE,
+  SEARCHED_ITEM_INDEX,
 } from './walletActions';
 
 const initialState = {
   senstiveDataList: [],
   walletKey: '',
   generatedPass: '',
+  searchedItemIndex: -1,
 };
 
 export default (state = initialState, action = {}) => {
@@ -73,6 +75,16 @@ export default (state = initialState, action = {}) => {
     case RESET_DB:
       return initialState;
 
+    case SEARCHED_ITEM_INDEX: {
+      const searchedItem = state.senstiveDataList.findIndex((data) =>
+        data.title.toLowerCase().includes(action.itemTitle.toLowerCase())
+      );
+
+      return {
+        ...state,
+        searchedItemIndex: searchedItem,
+      };
+    }
     default:
       return state;
   }

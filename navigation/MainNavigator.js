@@ -75,7 +75,13 @@ const MainStackNavigator = () => (
     })}
   >
     <Stack.Screen name='Main' component={BottomTabNavigator} />
-    <Stack.Screen name='Wallet' component={Wallet} />
+    <Stack.Screen
+      name='Wallet'
+      component={Wallet}
+      screenOptions={(navData) => ({
+        title: 'Wallet',
+      })}
+    />
     <Stack.Screen
       name='RigesterWallet'
       component={RegisterWallet}
