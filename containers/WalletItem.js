@@ -47,7 +47,7 @@ const WalletItem = (props) => {
     }
     setShowDeletionAlert(false);
   };
-
+console.log(props.searchedItemIndex)
   return (
     <View>
       <CustomAreYouSureAlert
@@ -59,6 +59,18 @@ const WalletItem = (props) => {
         style={{
           ...styles.walletItem,
           ...{ marginBottom: !expand ? 10 : 0 },
+          ...{
+            borderWidth:
+              props.searchedItemIndex === props.itemIndex &&
+              props.searchedItemIndex !== -1
+                ? 1
+                : 0,
+            borderColor:
+              props.searchedItemIndex === props.itemIndex &&
+              props.searchedItemIndex !== -1
+                ? Colors.red
+                : '',
+          },
         }}
       >
         <CustomAlert

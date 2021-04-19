@@ -52,6 +52,7 @@ export default (state = initialState, action = {}) => {
     case DELETE_ITEM:
       return {
         ...state,
+        searchedItemIndex:-1,
         senstiveDataList: state.senstiveDataList.filter(
           (d) => d.id !== action.id
         ),
@@ -82,7 +83,7 @@ export default (state = initialState, action = {}) => {
 
       return {
         ...state,
-        searchedItemIndex: searchedItem,
+        searchedItemIndex: action.itemTitle.trim() === '' ? -1 : searchedItem,
       };
     }
     default:

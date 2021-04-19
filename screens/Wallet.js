@@ -69,9 +69,9 @@ const Wallet = (props) => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (walletList.length > 0) {
+    if (walletList.length > 0 && searchedItemIndex !==-1) {
       flatList.current.scrollToIndex({
-        index: searchedItemIndex === -1 ? 0 : searchedItemIndex,
+        index: searchedItemIndex ,
         animated: true,
       });
     }
@@ -136,7 +136,6 @@ const Wallet = (props) => {
   const onSearchHandler = (event) => {
     dispatch(walletActions.searchForItem(event.nativeEvent.text));
 
-    console.log(searchedItemIndex);
   };
 
   const ListEmpty = (
@@ -165,6 +164,8 @@ const Wallet = (props) => {
         data={walletList}
         renderItem={(itemData) => (
           <WalletItem
+            searchedItemIndex={searchedItemIndex}
+            itemIndex={itemData.index}
             title={itemData.item.title}
             password={itemData.item.data}
             detial={itemData.item.detial}
