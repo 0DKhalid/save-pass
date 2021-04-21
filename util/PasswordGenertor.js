@@ -1,59 +1,76 @@
 /* eslint-disable import/prefer-default-export */
 export class GenerateRandomPassword {
   constructor(lowerCase, upperCase, symbols, numbers, length) {
-    this.lowerCase = [lowerCase, 26, 97];
-    this.upperCase = [upperCase, 26, 65];
-    this.symbols = [symbols, 20, '!@#$%^&*(){}[]=<>/,.'];
-    this.numbers = [numbers, 10, 48];
-    this.length = length;
+    this.chars = {
+      lowerCase: {
+        include: lowerCase,
+        fromRange: 26,
+        toRange: 97,
+      },
+      upperCase: {
+        include: upperCase,
+        fromRange: 10,
+        toRange: 48,
+      },
+      numbers: {
+        include: numbers,
+        fromRange: 26,
+        toRange: 65,
+      },
+      symbols: {
+        include: symbols,
+        fromRange: `!"#$%&()*<=>?@[\]^_{|}~`,
+        toRange: `!"#$%&()*<=>?@[\]^_{|}~`.length,
+      },
+    };
+    this.activeChars = [];
     this.count = 0;
+    this.length = length;
     this.password = [];
-    this.generateRndPassBasedOnFilters();
+    this.includedChars();
+    this.generatePass();
   }
 
   get getPassword() {
     return this.password.join('');
   }
 
-  generateRndPassBasedOnFilters() {
-    if (this.count >= this.length) {
-      this.shuffleGeneratedPass();
-      return;
+  includedChars() {
+    this.activeChars = Object.keys(this.chars).filter(
+      (char) => this.chars[char].include
+    );
+  }
+
+  randomChar(fromRange, toRange) {
+    if (typeof fromRange === 'string') {
+      this.password.push(fromRange.charAt(Math.random() * toRange));
+    } else {
+      this.password.push(
+        String.fromCharCode(Math.floor(Math.random() * fromRange + toRange))
+      );
+    }
+  }
+
+  generatePass() {
+    const trackChar = new Set();
+    while (this.count !== this.length) {
+      for (let [i, char] of this.activeChars.entries()) {
+        if (this.activeChars.length === i + 1) {
+          trackChar.clear();
+        }
+        if (this.chars[char].include && !trackChar.has(char)) {
+          trackChar.add(char);
+          this.randomChar(this.chars[char].fromRange, this.chars[char].toRange);
+          break;
+        }
+      }
+      this.count++;
     }
 
-    if (this.upperCase[0]) {
-      this.password.push(
-        String.fromCharCode(
-          Math.floor(Math.random() * this.upperCase[1] + this.upperCase[2])
-        )
-      );
-    }
-
-    if (this.lowerCase[0]) {
-      this.password.push(
-        String.fromCharCode(
-          Math.floor(Math.random() * this.lowerCase[1] + this.lowerCase[2])
-        )
-      );
-    }
-    if (this.numbers[0]) {
-      this.password.push(
-        String.fromCharCode(
-          Math.floor(Math.random() * this.numbers[1] + this.numbers[2])
-        )
-      );
-    }
-    if (this.symbols[0]) {
-      this.password.push(
-        this.symbols[2].charAt(Math.floor(Math.random() * this.symbols[1]))
-      );
-    }
-    this.count++;
-    this.generateRndPassBasedOnFilters();
+    this.shuffleGeneratedPass();
   }
 
   shuffleGeneratedPass() {
-    this.password = this.password.slice(0, this.length);
     let counter = this.password.length;
     while (counter > 0) {
       const rndIndex = Math.floor(Math.random() * counter);
