@@ -8,6 +8,12 @@ import MainNavigator from './navigation/MainNavigator';
 import walletReducer from './store/walletReducer';
 import { init } from './db/walletDB';
 
+
+
+
+
+
+
 init()
   .then((result) => {
     console.log('DATABASE CREATED!');

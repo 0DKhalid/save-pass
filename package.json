@@ -9,13 +9,14 @@
     "prettier": "prettier --config ./.prettierrc.json --write ./**/*.js"
   },
   "dependencies": {
+    "@expo/vector-icons": "^12.0.5",
     "@react-native-community/masked-view": "0.1.10",
     "@react-native-community/netinfo": "6.0.0",
     "@react-navigation/material-bottom-tabs": "^5.2.12",
     "@react-navigation/native": "^5.6.1",
     "@react-navigation/stack": "^5.6.2",
     "aes-js": "^3.1.2",
-    "expo": "^41.0.0",
+    "expo": "^38.0.0",
     "expo-background-fetch": "~9.1.0",
     "expo-crypto": "~9.1.0",
     "expo-font": "~9.1.0",
