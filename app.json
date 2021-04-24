@@ -3,7 +3,6 @@
     "name": "حافظة كلمات السر",
     "slug": "save-pass",
     "version": "1.4.0",
-    "sdkVersion": "38.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -14,7 +13,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "android": {
       "package": "khalid.D15CD4E7B89E24ED.Save_Pass",
       "versionCode": 6,
@@ -22,7 +23,6 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-
       "permissions": []
     }
   }
