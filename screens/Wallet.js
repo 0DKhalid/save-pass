@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useState,
+  useRef,
+  useCallback,
+} from 'react';
 import {
   View,
   FlatList,
@@ -30,25 +36,34 @@ const Wallet = (props) => {
     generatedPass ? generatedPass : ''
   );
   const [detial, setDetial] = useState('');
+  const [showSearchBox, setShowSearchBox] = useState(false);
 
   const dispatch = useDispatch();
   const flatList = useRef();
 
-  useEffect(() => {
-    if (generatedPass) {
-      setShowModal(true);
-    }
+  const onSearchIconClickHandler = () => {
+    setShowSearchBox((prevState) => !prevState);
+  };
+
+  useLayoutEffect(() => {
     props.navigation.setOptions({
       headerTitle: () => (
-        <TextInput
+       showSearchBox && <TextInput
           returnKeyType='search'
           onSubmitEditing={onSearchHandler}
-          style={styles.searchInput}
+          style={[
+            styles.searchInput,
+          ]}
           placeholder='أدخل عنوان كلمة السر للبحث'
         />
       ),
       headerRight: () => (
         <HeaderButtons HeaderButtonComponent={HeaderBtn}>
+          <Item
+            title='search for item'
+            iconName={!showSearchBox ? 'magnifying-glass' : 'cross'}
+            onPress={onSearchIconClickHandler}
+          />
           <Item
             title='add new'
             iconName='plus'
@@ -57,6 +72,12 @@ const Wallet = (props) => {
         </HeaderButtons>
       ),
     });
+  }, [showSearchBox]);
+
+  useEffect(() => {
+    if (generatedPass) {
+      setShowModal(true);
+    }
     return () => dispatch(walletActions.resetState());
   }, []);
 
@@ -69,9 +90,9 @@ const Wallet = (props) => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (walletList.length > 0 && searchedItemIndex !==-1) {
+    if (walletList.length > 0 && searchedItemIndex !== -1) {
       flatList.current.scrollToIndex({
-        index: searchedItemIndex ,
+        index: searchedItemIndex,
         animated: true,
       });
     }
@@ -135,7 +156,6 @@ const Wallet = (props) => {
 
   const onSearchHandler = (event) => {
     dispatch(walletActions.searchForItem(event.nativeEvent.text));
-
   };
 
   const ListEmpty = (
@@ -195,6 +215,7 @@ const styles = StyleSheet.create({
     paddingLeft: 7,
     borderRadius: 50,
     backgroundColor: '#fff',
+    marginRight: 20,
   },
 });
 

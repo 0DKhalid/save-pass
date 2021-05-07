@@ -7,7 +7,7 @@ const HeaderBtn = (props) => (
   <HeaderButton
     {...props}
     IconComponent={Entypo}
-    iconSize={24}
+    iconSize={22}
     color={Colors.primaryWhite}
   />
 );
