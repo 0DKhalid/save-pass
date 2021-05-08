@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     padding: 2,
     paddingRight: 7,
     paddingLeft: 7,
-    borderRadius: 20,
+    borderRadius: 10,
     backgroundColor: '#fff',
     marginRight: 20,
   },
